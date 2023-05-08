@@ -1,0 +1,31 @@
+{
+  "name": "gulptest",
+  "version": "1.0.0",
+  "description": "test gulp project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Gulp",
+    "JS"
+  ],
+  "author": "Aleksandr",
+  "license": "ISC",
+  "devDependencies": {
+    "animate.css": "^4.1.1",
+    "browser-sync": "^2.28.3",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-less": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "less-plugin-autoprefix": "^2.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.6.4"
+  }
+}
