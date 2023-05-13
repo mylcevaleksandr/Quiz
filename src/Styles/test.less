@@ -1,0 +1,175 @@
+
+.test {
+  padding-top: 20px;
+  padding-bottom: 50px;
+
+  &__prev-title {
+    font-size: 20px;
+    line-height: 24px;
+    color: #DCDCF3;
+  }
+
+  &__progressBar {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    display: flex;
+    column-gap: 130px;
+
+    &_item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+
+      &-circle {
+        width: 26px;
+        height: 26px;
+        background: #DCDCF3;
+        border-radius: 50%;
+      }
+
+      &-text {
+        font-size: 13px;
+        line-height: 16px;
+        margin-top: 10px;
+      }
+    }
+
+    &_item:not(:last-child)::before {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      width: 184px;
+      background: #DCDCF3;
+      height: 6px;
+      left: 28px;
+      top: 10px;
+    }
+
+    &_item.complete:not(:last-child)::before {
+      background: #6933DC;
+    }
+
+    &_item.complete .test__progressBar_item-circle,
+    &_item.active .test__progressBar_item-circle {
+      background: #6933DC;
+    }
+
+    &_item.active::after {
+      content: "";
+      border-radius: 50%;
+      position: absolute;
+      z-index: 1;
+      width: 14px;
+      height: 14px;
+      background: #DCDCF3;
+      top: 6px;
+    }
+  }
+
+  &__question {
+    &-title {
+      font-size: 36px;
+      line-height: 43px;
+      font-family: "Museo Sans Cyrl Bold", sans-serif;
+
+      & span {
+        color: #6933DC;
+      }
+    }
+
+    &_options {
+      margin-top: 58px;
+      min-height: 344px;
+
+      &-option {
+        font-size: 20px;
+        line-height: 24px;
+        margin-bottom: 20px;
+        display: flex;
+
+        & input[type="radio"] {
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 3px solid #6933DC;
+          border-radius: 50%;
+          margin: 0 13px 0 0;
+          transform: translateY(2px);
+          display: grid;
+          place-content: center;
+
+          &::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: inset 10px 10px #6933DC;
+            transition: .2s ease transform;
+            transform: scale(0);
+          }
+
+          &:checked::before {
+            transform: scale(1);
+          }
+        }
+
+        & label {
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_time {
+      display: flex;
+      align-items: center;
+
+      &-text {
+        margin-right: 15px;
+        font-size: 17px;
+        line-height: 20px;
+        color: #6933DC;
+      }
+
+      &-clock {
+        background-image: url("../Images/time.png");
+        background-size: cover;
+        background-position: center;
+        width: 27px;
+        height: 29px;
+        font-size: 10px;
+        text-align: center;
+        line-height: 28px;
+      }
+    }
+  }
+
+  &__pass-question {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+
+    & a {
+      font-size: 17px;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      column-gap: 13px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+@import "common";
+@import "adaptive";

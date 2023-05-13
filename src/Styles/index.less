@@ -1,0 +1,28 @@
+
+.main {
+  padding-top: 190px;
+  padding-bottom: 231px;
+
+  & .container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    & .main__content {
+      max-width: 588px;
+
+      &_description {
+        margin-top: 40px;
+        font-size: 20px
+      }
+
+      &_button {
+        margin-top: 60px;
+      }
+    }
+  }
+}
+
+
+@import "common";
+@import "adaptive";
