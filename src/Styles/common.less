@@ -4,9 +4,26 @@
   box-sizing: border-box;
 }
 
+
+@font-face {
+  src: url("../Fonts/Museo Sans Cyrl 500.ttf");
+  font-style: normal;
+  font-family: 'Museo Sans Cyrl Bold';
+}
+
+@font-face {
+  src: url("../Fonts/Museo Sans Cyrl 700.ttf");
+  font-style: normal;
+  font-family: 'Museo Sans Cyrl';
+}
+
 a {
   text-decoration: none;
   color: #6933DC;
+}
+
+a.btn {
+  display: inline-block;
 }
 
 ul,
@@ -40,7 +57,7 @@ body {
 }
 
 .common-title {
-  font-family: 'Museo Sans Cyrl', sans-serif;
+  font-family: 'Museo Sans Cyrl Bold', sans-serif;
   font-size: 48px;
   line-height: 58px;
   color: #333333;
@@ -71,7 +88,10 @@ body {
 
   &:hover {
     background-color: #401594;
-
+  }
+  &:disabled{
+    cursor: not-allowed;
+    background-color: #cdc5dc;
   }
 }
 
@@ -85,18 +105,6 @@ body {
 
     color: #FFFFFF;
   }
-}
-
-@font-face {
-  src: url("../Fonts/Museo Sans Cyrl 500.ttf");
-  font-style: normal;
-  font-family: 'Museo Sans Cyrl';
-}
-
-@font-face {
-  src: url("../Fonts/Museo Sans Cyrl 700.ttf");
-  font-style: normal;
-  font-family: 'Museo Sans Cyrl Bold';
 }
 
 .footer {
