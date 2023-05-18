@@ -90,14 +90,16 @@
 
         & input[type="radio"] {
           appearance: none;
-          width: 20px;
+         width: 20px;
           height: 20px;
           border: 3px solid #6933DC;
           border-radius: 50%;
           margin: 0 13px 0 0;
           transform: translateY(2px);
-          display: grid;
-          place-content: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0;
 
           &::before {
             content: "";

@@ -1,4 +1,3 @@
-
 function checkUserData() {
     const url = new URL( location.href );
     const name = url.searchParams.get( "name" );
