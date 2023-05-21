@@ -68,6 +68,16 @@ gulp.task( "lessFive", () => {
         .pipe( rename( { suffix: ".min" } ) )
         .pipe( gulp.dest( "docs/Styles" ) );
 } );
+gulp.task( "lessSix", () => {
+    return gulp.src( "./src/Styles/correct.less" )
+        .pipe( less( {
+            plugins: [ autoPreFix ]
+        } ) )
+        .pipe( concatCss( "correct.css" ) )
+        .pipe( cssMin() )
+        .pipe( rename( { suffix: ".min" } ) )
+        .pipe( gulp.dest( "docs/Styles" ) );
+} );
 
 gulp.task( "jsMin", () => {
     return gulp.src( "src/JS/*.js" )
@@ -93,7 +103,7 @@ gulp.task( "browser-sync", function () {
 gulp.task( "watch", () => {
     gulp.watch( "src/*.html" ).on( "change", gulp.parallel( "html" ) );
     gulp.watch( "src/JS/*.js" ).on( "change", gulp.parallel( "jsMin" ) );
-    gulp.watch( "src/Styles/*.less" ).on( "change", gulp.parallel( ["lessFive","less","lessTwo","lessThree","lessFour"] ) );
+    gulp.watch( "src/Styles/*.less" ).on( "change", gulp.parallel( ["lessFive","less","lessTwo","lessThree","lessFour","lessSix"] ) );
 
 } );
 

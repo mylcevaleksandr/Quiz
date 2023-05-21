@@ -201,6 +201,10 @@
             this.showQuestion();
         },
         complete() {
+            let answersIdString = [];
+            this.userResult.forEach( item => {
+                answersIdString.push( item.chosenAnswerId );
+            } );
 
             const url = new URL( location.href );
             const id = url.searchParams.get( "id" );
@@ -225,7 +229,7 @@
                     location.href = "index.html";
                 }
                 if ( result ) {
-                    location.href = "result.html?score=" + result.score + "&total=" + result.total;
+                    location.href = "result.html?score=" + result.score + "&total=" + result.total + "&answers=" + answersIdString.join( "," ) + "&id=" + id;
                 }
             }
             else {
