@@ -14,8 +14,9 @@
         init() {
 
             checkUserData();
-            const url = new URL( location.href );
-            const testId = url.searchParams.get( "id" );
+            // const url = new URL( location.href );
+            // const testId = url.searchParams.get( "id" );
+            const testId = sessionStorage.getItem( "id" );
             if ( testId ) {
                 const xhr = new XMLHttpRequest();
                 xhr.open( "GET", "https://testologia.site/get-quiz?id=" + testId, false );
@@ -206,11 +207,16 @@
                 answersIdString.push( item.chosenAnswerId );
             } );
 
-            const url = new URL( location.href );
-            const id = url.searchParams.get( "id" );
-            const name = url.searchParams.get( "name" );
-            const lastName = url.searchParams.get( "lastName" );
-            const email = url.searchParams.get( "email" );
+            const id = sessionStorage.getItem( "id" );
+            const name = sessionStorage.getItem( "name" );
+            const lastName = sessionStorage.getItem( "lastName" );
+            const email = sessionStorage.getItem( "email" );
+
+            // const url = new URL( location.href );
+            // const id = url.searchParams.get( "id" );
+            // const name = url.searchParams.get( "name" );
+            // const lastName = url.searchParams.get( "lastName" );
+            // const email = url.searchParams.get( "email" );
 
             const xhr = new XMLHttpRequest();
             xhr.open( "POST", "https://testologia.site/pass-quiz?id=" + id, false );
@@ -229,7 +235,11 @@
                     location.href = "index.html";
                 }
                 if ( result ) {
-                    location.href = "result.html?score=" + result.score + "&total=" + result.total + "&answers=" + answersIdString.join( "," ) + "&id=" + id;
+                    sessionStorage.setItem( "score", result.score );
+                    sessionStorage.setItem( "total", result.total );
+                    sessionStorage.setItem( "total", result.total );
+                    sessionStorage.setItem( "answers", answersIdString.join( "," ) );
+                    location.href = "result.html";
                 }
             }
             else {

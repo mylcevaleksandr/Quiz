@@ -5,14 +5,15 @@
         quiz: [],
         correctAnswers: [],
         init() {
+            const currentTestElement = document.getElementById( "current-test" );
+            // const url = new URL( location.href );
 
-            const url = new URL( location.href );
+            let answerString = sessionStorage.getItem( "answers" ).split( "," );
+            this.testId = sessionStorage.getItem( "id" );
 
-            let answerString = url.searchParams.get( "answers" ).split( "," );
             this.testAnswers = answerString.map( (str => {
                 return parseInt( str );
             }) );
-            this.testId = url.searchParams.get( "id" );
 
             if ( this.testId ) {
                 const xhr = new XMLHttpRequest();
@@ -25,9 +26,10 @@
                     } catch ( e ) {
                         location.href = "index.html";
                     }
+                    currentTestElement.innerText = this.quiz.name;
                     this.getCorrectAnswers();
-
                     this.showAnswers();
+
                 }
                 else {
                     location.href = "index.html";
@@ -36,6 +38,8 @@
             else {
                 location.href = "index.html";
             }
+
+            document.getElementById( "back" ).onclick = this.seeResultPage;
 
         },
         getCorrectAnswers() {
@@ -55,36 +59,53 @@
             }
         },
         showAnswers() {
-            console.log( this.quiz );
             const questions = this.quiz.questions;
-            const testResultElement = document.getElementById( "test-results" );
-
+            const testResultElement = document.querySelector( ".correct__questions" );
 
             for ( let i = 0; i < questions.length; i++ ) {
-                const testQuestionElement = document.createElement( "div" );
-                const testAns = "";
                 const testQuestionTitleElement = document.createElement( "div" );
                 testQuestionTitleElement.innerHTML = "<span>  Вопрос " + [ i + 1 ] + ": </span>" + questions[i].question;
-
                 testResultElement.appendChild( testQuestionTitleElement );
+                const testAnswersElement = document.createElement( "div" );
+
+                testQuestionTitleElement.className = "correct__questions_title";
+                testAnswersElement.className = "correct__questions_answers";
+
+
                 questions[i].answers.forEach( answer => {
-                    const testAnswer = document.createElement( "div" );
-                    testAnswer.innerHTML = answer.answer;
-                    testResultElement.appendChild( testAnswer );
+                    const circleElement = document.createElement( "div" );
+                    const circleTwoElement = document.createElement( "div" );
+                    const testAnswerTextElement = document.createElement( "div" );
+                    const testAnswerElement = document.createElement( "div" );
+
+                    testAnswerElement.className = "correct__questions_answers-answer";
+                    testAnswerTextElement.className = "correct__questions_answers-answer-text";
+                    circleElement.className = "correct__questions_answers-answer-circle";
+                    circleTwoElement.className = "correct__questions_answers-answer-circle-inner";
+
+
+                    if ( this.testAnswers[i] === answer.id && this.correctAnswers[i] === answer.id ) {
+                        testAnswerTextElement.classList.add( "green" );
+                        circleElement.classList.add( "green-circle" );
+                    }
+                    else if ( this.testAnswers[i] === answer.id ) {
+                        testAnswerTextElement.classList.add( "red" );
+                        circleElement.classList.add( "red-circle" );
+                    }
+
+                    circleElement.appendChild( circleTwoElement );
+                    testAnswerElement.appendChild( circleElement );
+                    testAnswerElement.appendChild( testAnswerTextElement );
+                    testAnswersElement.appendChild( testAnswerElement );
+                    testAnswerTextElement.innerHTML = answer.answer;
+                    testResultElement.appendChild( testAnswersElement );
                 } );
-                testResultElement.appendChild( testQuestionElement );
-
-
-                console.log( questions[i].answers );
-                if ( this.testAnswers[i] === this.correctAnswers[i] ) {
-                    console.log( this.correctAnswers[i] );
-                }
-                else {
-                    console.log( this.testAnswers[i] );
-                }
             }
 
         },
+        seeResultPage() {
+            location.href = "result.html";
+        }
 
     };
     Correct.init();
