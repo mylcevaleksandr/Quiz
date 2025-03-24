@@ -76,8 +76,6 @@
 
 
                 location.href = "choice.html";
-
-                // + paramString;
             }
         }
     };

@@ -7,7 +7,7 @@
             checkUserData();
 
             const xhr = new XMLHttpRequest();
-            xhr.open( "GET", "https://testologia.site/get-quizzes", false );
+            xhr.open( "GET", "https://testologia.ru/get-quizzes", false );
             xhr.send();
 
             if ( xhr.status === 200 && xhr.responseText ) {
@@ -64,8 +64,6 @@
                 sessionStorage.setItem( "id", dataId );
 
                 location.href = "test.html";
-
-                // + location.search + "&id" + "=" + dataId;
             }
         }
     };

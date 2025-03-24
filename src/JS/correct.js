@@ -6,7 +6,6 @@
         correctAnswers: [],
         init() {
             const currentTestElement = document.getElementById( "current-test" );
-            // const url = new URL( location.href );
 
             let answerString = sessionStorage.getItem( "answers" ).split( "," );
             this.testId = sessionStorage.getItem( "id" );
@@ -17,7 +16,7 @@
 
             if ( this.testId ) {
                 const xhr = new XMLHttpRequest();
-                xhr.open( "GET", "https://testologia.site/get-quiz?id=" + this.testId, false );
+                xhr.open( "GET", "https://testologia.ru/get-quiz?id=" + this.testId, false );
                 xhr.send();
                 if ( xhr.status === 200 && xhr.responseText ) {
                     try {
@@ -40,11 +39,11 @@
             }
 
             document.getElementById( "back" ).onclick = this.seeResultPage;
-
+            document.getElementById( "choice" ).onclick = this.passTestAgain;
         },
         getCorrectAnswers() {
             const xhr = new XMLHttpRequest();
-            xhr.open( "GET", "https://testologia.site/get-quiz-right?id=" + this.testId, false );
+            xhr.open( "GET", "https://testologia.ru/get-quiz-right?id=" + this.testId, false );
             xhr.send();
             if ( xhr.status === 200 && xhr.responseText ) {
                 try {
@@ -105,6 +104,9 @@
         },
         seeResultPage() {
             location.href = "result.html";
+        },
+        passTestAgain(){
+            location.href = "choice.html";
         }
 
     };
